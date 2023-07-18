@@ -22,7 +22,7 @@ class Product {
   /// Resivimos un String generamos una instancia de nuestro modelo
   factory Product.fromRawJson(String str) => Product.fromJson(json.decode(str));
 
-  /// Json para mandar al servidor
+  /// Json para mandar al servidor recibe un mapa y lo pasa a json
   String toRawJson() => json.encode(toJson());
 
   /// Resivimos un MAPA json y lo instanciamos a el modelo
