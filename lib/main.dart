@@ -11,10 +11,13 @@ class AppState extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        /// lazie en true por defento y si se pone ne false se disparara apenas es creado
+        /// lazie en true por defento y si se pone en false se disparara apenas es creado
         // ChangeNotifierProvider(create: (_) => ProductsService(), lazy: false,
         ChangeNotifierProvider(
           create: (_) => ProductsService(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => AuthService(),
         )
       ],
       child: MyApp(),
@@ -30,12 +33,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Productos App',
-      initialRoute: 'home',
+      initialRoute: 'checking',
       routes: {
+        'checking': (_) => CheckAuthScreen(),
+        'register': (_) => RegisterScreen(),
         'login': (_) => LoginScreen(),
         'home': (_) => HomeScreen(),
         'product': (_) => ProductScreen(),
       },
+      scaffoldMessengerKey: NotificationsService.messengerKey,
       theme: ThemeData.light().copyWith(
         scaffoldBackgroundColor: Colors.grey[300],
         appBarTheme: AppBarTheme(elevation: 0, color: Colors.indigo),
